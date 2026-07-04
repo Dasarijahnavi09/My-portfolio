@@ -283,7 +283,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 320px;
+    min-height: 340px;
 }
 
 .hero-visual::before {
@@ -300,60 +300,128 @@ body {
     z-index: 0;
 }
 
-.hero-code-panel {
-    width: 100%;
-    max-width: 420px;
+.hero-icon-cluster {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    z-index: 1;
+}
+
+.hero-tech-chip {
+    position: absolute;
+    width: 66px;
+    height: 66px;
     background: var(--bg-primary);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent-green);
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    position: relative;
-    z-index: 1;
-    transition: box-shadow 0.2s ease;
-}
-
-.hero-code-panel:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-.hero-code-header {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(47, 62, 77, 0.08);
     display: flex;
-    gap: 8px;
-    padding: 12px 16px;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    animation: heroTechBob var(--bob-duration, 3.5s) ease-in-out infinite;
+    animation-delay: var(--bob-delay, 0s);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.hero-code-header span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+.hero-tech-chip i {
+    font-size: 1.85rem;
+    line-height: 1;
 }
 
-.hero-code-header span:first-child { background: #C47A7A; }
-.hero-code-header span:nth-child(2) { background: #C9A86C; }
-.hero-code-header span:nth-child(3) { background: #7AAA85; }
-
-.hero-code-body {
-    margin: 0;
-    padding: 1.25rem 1.5rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-primary);
-    white-space: pre-wrap;
-    background: var(--bg-primary);
+.hero-tech-chip--next {
+    top: 6%;
+    left: 36%;
+    color: var(--accent-slate);
 }
 
-.hero-code-body .code-comment { color: var(--text-secondary); }
-.hero-code-body .code-kw { color: var(--accent-slate); }
-.hero-code-body .code-str { color: var(--accent-green); }
-.hero-code-body .code-fn { color: #4A6278; }
+.hero-tech-chip--flutter {
+    top: 2%;
+    right: 4%;
+    color: var(--accent-green);
+}
 
-.hero-orbit {
-    display: none;
+.hero-tech-chip--python {
+    top: 40%;
+    right: 0;
+    color: var(--accent-slate);
+}
+
+.hero-tech-chip--ai {
+    bottom: 6%;
+    right: 18%;
+    color: var(--accent-green);
+}
+
+.hero-tech-chip--cloud {
+    bottom: 4%;
+    left: 24%;
+    color: var(--accent-slate);
+}
+
+.hero-tech-chip--db {
+    top: 36%;
+    left: 0;
+    color: var(--accent-green);
+}
+
+.hero-tech-chip:hover {
+    animation-play-state: paused;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(63, 122, 84, 0.28);
+    z-index: 2;
+}
+
+.hero-tech-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--accent-slate);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hero-tech-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--accent-slate);
+}
+
+.hero-tech-chip:hover .hero-tech-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@keyframes heroTechBob {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-tech-chip {
+        animation: none;
+    }
+
+    .hero-tech-chip:hover {
+        transform: translateY(-4px);
+    }
 }
 
 .image-container {
@@ -528,22 +596,26 @@ section {
 /* About Section */
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem 3rem;
+    align-items: start;
 }
 
 .about-image {
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .about-img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: var(--radius-card);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-subtle);
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent-green);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 .about-text h3 {
@@ -790,6 +862,17 @@ section {
     font-weight: 600;
     color: var(--accent-green);
     margin-bottom: 1rem;
+}
+
+.achievement-title--in-progress {
+    display: inline-block;
+    color: #7A6342;
+    background: #F3EDE3;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(154, 123, 79, 0.22);
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .achievement-description {
@@ -1446,6 +1529,16 @@ section {
         text-align: left;
     }
 
+    .about-image {
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .about-img {
+        width: 220px;
+        height: 220px;
+    }
+
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.25rem;
@@ -1504,8 +1597,30 @@ section {
     }
 
     .hero-visual {
-        min-height: 260px;
+        min-height: 280px;
         margin-top: 1rem;
+    }
+
+    .hero-icon-cluster {
+        width: 300px;
+        height: 300px;
+        transform: scale(0.92);
+        transform-origin: center top;
+    }
+
+    .hero-visual::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .hero-tech-chip {
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+    }
+
+    .hero-tech-chip i {
+        font-size: 1.6rem;
     }
 
     section {
