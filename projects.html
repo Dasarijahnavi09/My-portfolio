@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Jahnavi Dasari</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="projects-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Portfolio</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#achievements" class="nav-link">Achievements</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link nav-link-active">Projects</a></li>
+                <li class="nav-item"><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <div class="page-title-wrap">
+                <h1 class="page-title"><i class="fas fa-folder-open page-icon" aria-hidden="true"></i> Projects</h1>
+            </div>
+            <p class="page-subtitle">Things I've built</p>
+        </div>
+    </header>
+
+    <section class="projects projects-page-section">
+        <div class="container">
+            <div class="project-filters" role="tablist" aria-label="Filter projects">
+                <button type="button" class="project-filter-btn is-active" data-filter="all" role="tab" aria-selected="true"><i class="fas fa-th-large filter-icon" aria-hidden="true"></i> All</button>
+                <button type="button" class="project-filter-btn" data-filter="client" role="tab" aria-selected="false"><i class="fas fa-briefcase filter-icon" aria-hidden="true"></i> Client Work</button>
+                <button type="button" class="project-filter-btn" data-filter="ai-data" role="tab" aria-selected="false"><i class="fas fa-brain filter-icon" aria-hidden="true"></i> AI &amp; Data</button>
+                <button type="button" class="project-filter-btn" data-filter="hackathons" role="tab" aria-selected="false"><i class="fas fa-rocket filter-icon" aria-hidden="true"></i> Hackathons &amp; Personal</button>
+            </div>
+            <div class="projects-grid" id="projects-grid">
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/RegionalMate.png" alt="RegionalMate">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/IBM-hackathon-project.git" class="project-link" title="View Source Code"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>RegionalMate - IBM Hackathon Project</h3>
+                        <p>Comprehensive web application for regional relocation decisions in Australia. Features city discovery & comparison, job search integration, accommodation planning, and AI-powered assistant using IBM Watson. Built with Node.js/Express backend, vanilla JavaScript frontend, and progressive web interface with plan export functionality.</p>
+                        <div class="project-tech">
+                            <span>Node.js</span><span>Express</span><span>IBM Watson</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-data">
+                    <span class="project-category-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Data</span>
+                    <div class="project-image">
+                        <img src="assets/images/GovHack Assistant.png" alt="GovHack Assistant">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/GovHack-Assistant.git" class="project-link" title="View Source Code"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>GovHack Assistant - MyGov Service Navigator</h3>
+                        <p>Intelligent conversational AI assistant helping Australian citizens navigate government services. Features service location finder, government service guides, data analytics with real Australian government datasets, and natural language processing for intent recognition. Built with Streamlit frontend and FastAPI backend.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>Streamlit</span><span>FastAPI</span><span>NLP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="client">
+                    <span class="project-category-badge badge-client"><i class="fas fa-briefcase" aria-hidden="true"></i> Client Work</span>
+                    <div class="project-image">
+                        <img src="assets/images/Secure Web App (OAuth + MFA).png" alt="Unit Builds Tracker">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Unit Builds Tracker - Full-Stack Operations Platform</h3>
+                        <p>A Next.js 14 and MySQL application for tracking WiFi unit build workflows in production use. Features S3 presigned photo uploads, soft delete, multiple checklist builds per unit, and a cross-region (AU/US) database view with dashboard analytics.</p>
+                        <div class="project-tech">
+                            <span>Next.js</span><span>MySQL</span><span>AWS S3</span><span>Full-Stack</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="client">
+                    <span class="project-category-badge badge-client"><i class="fas fa-briefcase" aria-hidden="true"></i> Client Work</span>
+                    <div class="project-image">
+                        <img src="assets/images/AFL_Projects.png" alt="Sewsure Computer Vision App">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-mobile-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sewsure Computer Vision App</h3>
+                        <p>Flutter mobile app with Firebase-backed computer vision features for garment and textile visualization. Includes SVG overlay pipelines, frost overlay effects, cutout generation, and multi-area fill UI for real-time image processing.</p>
+                        <div class="project-tech">
+                            <span>Flutter</span><span>Firebase</span><span>Computer Vision</span><span>Dart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-data">
+                    <span class="project-category-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Data</span>
+                    <div class="project-image">
+                        <img src="assets/images/agents.png" alt="Contract Workflow Automation System">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Contract Workflow Automation System - Multi-Agent AI System</h3>
+                        <p>Python-based multi-agent automation system for processing and validating real estate contract workflows. Features 5 specialized agents for PDF extraction, email classification, contract validation, solicitor approval, and workflow state management through the full contract lifecycle.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>Multi-Agent System</span><span>PDF Processing</span><span>Workflow Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-data">
+                    <span class="project-category-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Data</span>
+                    <div class="project-image">
+                        <img src="assets/images/Australia Fisheries Data Analysis &amp; Power BI Pipeline.png" alt="Australia Fisheries Data Analysis">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Australia Fisheries Data Analysis &amp; Power BI Pipeline</h3>
+                        <p>End-to-end data project that turns global fisheries CSVs into Australia-only, analysis-ready datasets and Power BI-ready exports. Includes filtering, cleaning, enrichment, EDA, trend visualizations, and dashboard-ready CSV outputs.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>pandas</span><span>NumPy</span><span>Power BI</span><span>EDA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-data">
+                    <span class="project-category-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Data</span>
+                    <div class="project-image">
+                        <img src="assets/images/IoT Environmental Monitoring System.png" alt="IoT Environmental Monitoring System">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/IoT-Environmental-Monitoring-System.git" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>IoT Environmental Monitoring System</h3>
+                        <p>IoT environmental monitoring combining Raspberry Pi Sense HAT sensors, machine learning algorithms, and web visualization. Features real-time data collection, predictive analytics, interactive LED matrix feedback, and multi-location support.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>PHP</span><span>Raspberry Pi</span><span>Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/AFL_Projects.png" alt="AFL Stats Tracker">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/AFL_Stats_Tracker" class="project-link" title="View Source Code"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>AFL Stats Tracker - Multi-Platform</h3>
+                        <p>Mobile application for tracking Australian Football League match statistics in real-time. Features live stats, team management, quarter-by-quarter tracking, player analytics, and undo functionality across Android, Flutter, and iOS with Firebase.</p>
+                        <div class="project-tech">
+                            <span>Kotlin</span><span>Flutter</span><span>Swift</span><span>Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/Secure Web App (OAuth + MFA).png" alt="Secure Web Application">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/Secure-Web-App-OAuth-MFA-" class="project-link" title="View Source Code"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Secure Web Application - OAuth &amp; MFA</h3>
+                        <p>Secure web application with role-based access control, Discord OAuth integration, and multi-factor authentication. Features password hashing, data encryption, access logging, and IP geolocation tracking.</p>
+                        <div class="project-tech">
+                            <span>PHP</span><span>MySQL</span><span>OAuth</span><span>Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/Formula 1 Management System.png" alt="Formula 1 Timing System">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/Formula-1-Management-System.git" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title-long">Formula 1 Timing System</h3>
+                        <p>Formula 1 timing and management system with RESTful API, race simulation engine, and real-time lap time calculations. Features driver management, car specifications, and advanced race simulation algorithms.</p>
+                        <div class="project-tech">
+                            <span>PHP</span><span>MySQL</span><span>REST API</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/PHP web scraaper project.png" alt="PHP Web Scraping Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Dasarijahnavi09/PHP-Web-Scraper.git" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>PHP Web Scraping Project</h3>
+                        <p>Web scraping project demonstrating Guzzle, Goutte, Symfony Panther, and Simple HTML DOM for data extraction. Includes XPath queries, CSS selectors, link following, and screenshot capture.</p>
+                        <div class="project-tech">
+                            <span>PHP</span><span>Guzzle</span><span>Goutte</span><span>Panther</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="hackathons">
+                    <span class="project-category-badge badge-hackathon"><i class="fas fa-rocket" aria-hidden="true"></i> Hackathon</span>
+                    <div class="project-image">
+                        <img src="assets/images/Mood-recommender.png" alt="Mood AI Recommender">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="Personal Project"><i class="fas fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Mood AI Recommender - Personal Project</h3>
+                        <p>Mood-based content recommendation system suggesting movies, songs, and books based on emotional state. Flask MVC architecture with secure authentication, SQLite, and multi-API integration (TMDB, iTunes, Google Books).</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>Flask</span><span>SQLite</span><span>REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-data">
+                    <span class="project-category-badge badge-ai"><i class="fas fa-brain" aria-hidden="true"></i> AI &amp; Data</span>
+                    <div class="project-image">
+                        <img src="assets/images/AMO app'.png" alt="Architecture Project">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title-long">Architecture Project - Visual Image Management System</h3>
+                        <p>PyQt5 desktop application for visual image management with infinite canvas, drawing tools, AI-powered tagging, DBSCAN/K-Means sorting, web scraping integration, CSV import/export, and complete project persistence.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>PyQt5</span><span>NumPy</span><span>Machine Learning</span><span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="client">
+                    <span class="project-category-badge badge-client"><i class="fas fa-briefcase" aria-hidden="true"></i> Client Work</span>
+                    <div class="project-image">
+                        <img src="assets/images/PVR site.png" alt="PVR Supplies Website">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Website"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>PVR Supplies Website - E-Commerce &amp; Product Catalog</h3>
+                        <p>Single-page application for PVR Supplies Pty Ltd featuring 12 product categories, auto-rotating carousels, quote request system, testimonials, and Australian Standard compliance details for line marking and safety products.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>E-Commerce</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="client">
+                    <span class="project-category-badge badge-client"><i class="fas fa-briefcase" aria-hidden="true"></i> Client Work</span>
+                    <div class="project-image">
+                        <img src="assets/images/msg global site.png" alt="MSG Global Foods Website">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Website"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>MSG Global Foods Website - E-Commerce &amp; Product Catalog</h3>
+                        <p>Responsive website for MSG Global Foods with dynamic product catalog, auto-swiping carousels, brand logo carousel, company timeline (1998-2020), and comprehensive contact information.</p>
+                        <div class="project-tech">
+                            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Google Fonts</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Jahnavi Dasari. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

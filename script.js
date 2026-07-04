@@ -127,26 +127,88 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Initialize typing effect when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText.replace(/<[^>]*>/g, ''), 50);
-        }, 1000);
-    }
-});
+// Initialize typing effect when page loads - disabled to preserve hero HTML structure
+// document.addEventListener('DOMContentLoaded', () => { ... });
 
-// Add hover effects to project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
+// Project grid: filter (projects page shows all cards)
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('projects-grid');
+    const toggleBtn = document.getElementById('projects-toggle-btn');
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+
+    if (!grid) return;
+
+    const isFullProjectsPage = document.body.classList.contains('projects-page');
+    let activeFilter = 'all';
+    let expanded = isFullProjectsPage;
+
+    const getCards = () => Array.from(grid.querySelectorAll('.project-card'));
+
+    const getFilteredCards = () => {
+        return getCards().filter(card => {
+            if (activeFilter === 'all') return true;
+            return card.dataset.category === activeFilter;
+        });
+    };
+
+    const updateProjectVisibility = () => {
+        const filtered = getFilteredCards();
+        const allCards = getCards();
+
+        allCards.forEach(card => card.classList.add('is-hidden'));
+
+        filtered.forEach((card, index) => {
+            if (expanded || index < 6) {
+                card.classList.remove('is-hidden');
+            }
+        });
+
+        if (toggleBtn) {
+            const hasMore = filtered.length > 6;
+            toggleBtn.style.display = hasMore ? 'inline-block' : 'none';
+            toggleBtn.textContent = expanded ? 'Show Fewer Projects' : 'View All Projects';
+            toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+    };
+
+    if (isFullProjectsPage) {
+        getCards().forEach(card => card.classList.remove('is-hidden'));
+    } else {
+        updateProjectVisibility();
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            activeFilter = btn.dataset.filter;
+
+            filterBtns.forEach(b => {
+                const isActive = b === btn;
+                b.classList.toggle('is-active', isActive);
+                b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            if (isFullProjectsPage) {
+                getCards().forEach(card => {
+                    const matches = activeFilter === 'all' || card.dataset.category === activeFilter;
+                    card.classList.toggle('is-hidden', !matches);
+                });
+            } else {
+                expanded = false;
+                updateProjectVisibility();
+            }
+        });
     });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-    });
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            expanded = !expanded;
+            updateProjectVisibility();
+
+            if (!expanded) {
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 });
 
 // Scroll to top functionality
@@ -159,8 +221,8 @@ scrollToTopBtn.style.cssText = `
     right: 30px;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background: #2563eb;
+    border-radius: 8px;
+    background: #2F3E4D;
     color: white;
     border: none;
     cursor: pointer;
@@ -256,3 +318,68 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Animated stat counters on scroll
+function animateCounter(el, duration = 1400) {
+    const target = parseInt(el.dataset.target, 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const start = performance.now();
+
+    function update(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        el.textContent = `${prefix}${value}${suffix}`;
+        if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+}
+
+function animateSkillPct(el, target, duration = 1400) {
+    const start = performance.now();
+
+    function update(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        el.textContent = `${value}%`;
+        if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const statsRow = document.querySelector('.stats-row');
+    const skillsChart = document.querySelector('.skills-chart');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            if (entry.target.classList.contains('stats-row')) {
+                entry.target.querySelectorAll('.stat-value').forEach(counter => {
+                    if (counter.dataset.animated) return;
+                    counter.dataset.animated = 'true';
+                    animateCounter(counter);
+                });
+            }
+
+            if (entry.target.classList.contains('skills-chart')) {
+                if (entry.target.dataset.animated) return;
+                entry.target.dataset.animated = 'true';
+                entry.target.classList.add('is-animated');
+                entry.target.querySelectorAll('.skill-bar-pct').forEach(pct => {
+                    animateSkillPct(pct, parseInt(pct.dataset.level, 10));
+                });
+            }
+
+            counterObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.35 });
+
+    if (statsRow) counterObserver.observe(statsRow);
+    if (skillsChart) counterObserver.observe(skillsChart);
+});
